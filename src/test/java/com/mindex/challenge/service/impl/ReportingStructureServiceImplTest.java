@@ -15,13 +15,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ReportingStructureServiceImplTest {
     private String reportingStructureUrl;
     private String employeeUrl;
-    private String employeeIdUrl;
 
     @Autowired
     private ReportingStructureService reportingStructureService;
@@ -35,7 +35,6 @@ public class ReportingStructureServiceImplTest {
     @Before
     public void setup() {
         employeeUrl = "http://localhost:" + port + "/employee";
-        employeeIdUrl = "http://localhost:" + port + "/employee/{id}";
         reportingStructureUrl = "http://localhost:" + port + "/report/{id}";
     }
 
@@ -46,7 +45,7 @@ public class ReportingStructureServiceImplTest {
 
         // Get a report for the employee to see if reporter count works
         ReportingStructure report = restTemplate.getForEntity(reportingStructureUrl, ReportingStructure.class, testEmployee).getBody();
-
+        assertNotNull(report);
         assertEquals(2, report.getNumberOfReports());
     }
 
@@ -57,7 +56,7 @@ public class ReportingStructureServiceImplTest {
 
         // Get a report for the employee to see if recursive call works
         ReportingStructure report = restTemplate.getForEntity(reportingStructureUrl, ReportingStructure.class, testEmployee).getBody();
-
+        assertNotNull(report);
         assertEquals(4, report.getNumberOfReports());
     }
 
@@ -73,9 +72,12 @@ public class ReportingStructureServiceImplTest {
 
         Employee firstCreatedEmployee = restTemplate.postForEntity(employeeUrl, firstTestEmployee, Employee.class).getBody();
 
+        assertNotNull(firstCreatedEmployee.getEmployeeId());
+
         // Get a report for the first employee to see if the number of reports is 0
         ReportingStructure firstTestReport = restTemplate.getForEntity(reportingStructureUrl, ReportingStructure.class, firstCreatedEmployee.getEmployeeId()).getBody();
 
+        assertNotNull(firstTestReport);
         assertEquals(0, firstTestReport.getNumberOfReports());
 
         // Create new data for another employee which will receive reports from the previous employee
@@ -91,9 +93,12 @@ public class ReportingStructureServiceImplTest {
 
         Employee secondTestResult = restTemplate.postForEntity(employeeUrl, secondTestEmployee, Employee.class).getBody();
 
+        assertNotNull(secondTestResult.getEmployeeId());
+
         // Get a second report for the second employee to see if the number is 1
         ReportingStructure secondTestReport = restTemplate.getForEntity(reportingStructureUrl, ReportingStructure.class, secondTestResult.getEmployeeId()).getBody();
 
+        assertNotNull(secondTestReport);
         assertEquals(1, secondTestReport.getNumberOfReports());
     }
 }
