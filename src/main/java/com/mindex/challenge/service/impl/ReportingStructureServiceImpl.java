@@ -18,16 +18,17 @@ public class ReportingStructureServiceImpl implements ReportingStructureService 
 
     @Override
     public ReportingStructure getReportingStructure (String employeeId) {
+        LOG.debug("Creating reporting structure for the employee with id [{}]", employeeId);
+
         // Find the employee for a reporting check
         Employee employee = employeeRepository.findByEmployeeId(employeeId);
         // Check if the employee exists
         if (employee == null) {
-            throw new RuntimeException("Employee not found with ID: " + employeeId);
+            throw new RuntimeException("Employee not found with id: " + employeeId);
         }
         // Count the number of reports recursively and create a reporting structure with the present data
         int numberOfReports = countReporters(employee);
-        ReportingStructure report = new ReportingStructure(employee, numberOfReports);
-        return report;
+        return new ReportingStructure(employee, numberOfReports);
     }
 
     // Recursive method to count directly or indirectly reporting employees
