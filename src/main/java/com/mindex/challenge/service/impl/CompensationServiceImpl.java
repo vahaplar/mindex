@@ -21,7 +21,7 @@ public class CompensationServiceImpl implements CompensationService {
 
         compensationRepository.insert(compensation);
 
-       return compensation;
+        return compensation;
     }
 
     @Override

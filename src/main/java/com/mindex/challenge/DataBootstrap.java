@@ -21,7 +21,7 @@ public class DataBootstrap {
     private ObjectMapper objectMapper;
 
     @PostConstruct
-    public void init() {
+    public void init () {
         InputStream inputStream = this.getClass().getResourceAsStream(DATASTORE_LOCATION);
 
         Employee[] employees = null;

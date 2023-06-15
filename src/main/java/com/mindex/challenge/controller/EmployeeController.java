@@ -15,21 +15,21 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @PostMapping("/employee")
-    public Employee create(@RequestBody Employee employee) {
+    public Employee create (@RequestBody Employee employee) {
         LOG.debug("Received employee create request for [{}]", employee);
 
         return employeeService.create(employee);
     }
 
     @GetMapping("/employee/{id}")
-    public Employee read(@PathVariable String id) {
+    public Employee read (@PathVariable String id) {
         LOG.debug("Received employee create request for id [{}]", id);
 
         return employeeService.read(id);
     }
 
     @PutMapping("/employee/{id}")
-    public Employee update(@PathVariable String id, @RequestBody Employee employee) {
+    public Employee update (@PathVariable String id, @RequestBody Employee employee) {
         LOG.debug("Received employee create request for id [{}] and employee [{}]", id, employee);
 
         employee.setEmployeeId(id);

@@ -10,54 +10,54 @@ public class Employee {
     private String department;
     private List<Employee> directReports;
 
-    public Employee() {
+    public Employee () {
     }
 
-    public String getEmployeeId() {
+    public String getEmployeeId () {
         return employeeId;
     }
 
-    public void setEmployeeId(String employeeId) {
+    public void setEmployeeId (String employeeId) {
         this.employeeId = employeeId;
     }
 
-    public String getFirstName() {
+    public String getFirstName () {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName (String firstName) {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
+    public String getLastName () {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName (String lastName) {
         this.lastName = lastName;
     }
 
-    public String getPosition() {
+    public String getPosition () {
         return position;
     }
 
-    public void setPosition(String position) {
+    public void setPosition (String position) {
         this.position = position;
     }
 
-    public String getDepartment() {
+    public String getDepartment () {
         return department;
     }
 
-    public void setDepartment(String department) {
+    public void setDepartment (String department) {
         this.department = department;
     }
 
-    public List<Employee> getDirectReports() {
+    public List<Employee> getDirectReports () {
         return directReports;
     }
 
-    public void setDirectReports(List<Employee> directReports) {
+    public void setDirectReports (List<Employee> directReports) {
         this.directReports = directReports;
     }
 }

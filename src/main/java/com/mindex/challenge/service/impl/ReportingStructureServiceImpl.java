@@ -32,7 +32,7 @@ public class ReportingStructureServiceImpl implements ReportingStructureService 
     }
 
     // Recursive method to count directly or indirectly reporting employees
-    private int countReporters(Employee employee) {
+    private int countReporters (Employee employee) {
         int count = 0;
         // Check if the employee exists and has any reporters
         if (employee != null && employee.getDirectReports() != null) {
